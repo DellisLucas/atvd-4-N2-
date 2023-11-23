@@ -22,7 +22,7 @@ router.get('/alunos', async (req, res) => {
     res.json(alunos);
   } catch (error) {
     console.error('Erro ao buscar alunos:', error);
-    res.status(500).send('Erro interno do servidor');
+    res.status(500).send('Erro interno do servidor1');
   }
 });
 
