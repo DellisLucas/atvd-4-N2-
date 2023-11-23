@@ -31,7 +31,7 @@ app.use('/api', disciplinaRoutes);
 const professorRoutes = require('./src/routes/professorRoutes');
 app.use('/api', professorRoutes);
 
-const tipoAvaliacaoRoutes = require('./src/routes/tipoAvaliacaoROutes');
+const tipoAvaliacaoRoutes = require('./src/routes/tipoAvaliacaoRoutes');
 app.use('/api', tipoAvaliacaoRoutes);
 
 const alunoRoutes = require('./src/routes/alunoRoutes');
