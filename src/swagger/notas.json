@@ -1,0 +1,156 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Notas",
+      "description": "API para realizar operações CRUD em registros de notas.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/notas": {
+        "get": {
+          "summary": "Lista todas as notas",
+          "responses": {
+            "200": {
+              "description": "Lista de notas recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "idtipoavaliacao": 1,
+                      "peso": 0.3,
+                      "idaluno": 1,
+                      "idprofessor": 2,
+                      "iddisciplina": 3
+                    },
+                    {
+                      "id": 2,
+                      "idtipoavaliacao": 2,
+                      "peso": 0.4,
+                      "idaluno": 2,
+                      "idprofessor": 1,
+                      "iddisciplina": 3
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria uma nova nota",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "idtipoavaliacao": 1,
+                  "peso": 0.3,
+                  "idaluno": 1,
+                  "idprofessor": 2,
+                  "iddisciplina": 3
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Nota criada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "idtipoavaliacao": 1,
+                    "peso": 0.3,
+                    "idaluno": 1,
+                    "idprofessor": 2,
+                    "iddisciplina": 3
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/notas/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID da nota",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza uma nota existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "idtipoavaliacao": 2,
+                  "peso": 0.4,
+                  "idaluno": 2,
+                  "idprofessor": 1,
+                  "iddisciplina": 3
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Nota atualizada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "idtipoavaliacao": 2,
+                    "peso": 0.4,
+                    "idaluno": 2,
+                    "idprofessor": 1,
+                    "iddisciplina": 3
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Nota não encontrada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui uma nota",
+          "responses": {
+            "200": {
+              "description": "Nota excluída com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "idtipoavaliacao": 2,
+                    "peso": 0.4,
+                    "idaluno": 2,
+                    "idprofessor": 1,
+                    "iddisciplina": 3
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Nota não encontrada"
+            }
+          }
+        }
+      }
+    }
+  }
+  

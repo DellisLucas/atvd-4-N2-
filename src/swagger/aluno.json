@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Alunos",
+      "description": "API para realizar operações CRUD em registros de alunos.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/alunos": {
+        "get": {
+          "summary": "Lista todos os alunos",
+          "responses": {
+            "200": {
+              "description": "Lista de alunos recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "nome": "João Silva",
+                      "rg": "1234567",
+                      "cpf": "98765432100",
+                      "endereco": "Rua A, 123",
+                      "telefone": "123456789",
+                      "id_curso": 1
+                    },
+                    {
+                      "id": 2,
+                      "nome": "Maria Oliveira",
+                      "rg": "7654321",
+                      "cpf": "12345678900",
+                      "endereco": "Rua B, 456",
+                      "telefone": "987654321",
+                      "id_curso": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo aluno",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Aluno",
+                  "rg": "9876543",
+                  "cpf": "12312312312",
+                  "endereco": "Rua C, 789",
+                  "telefone": "987654321",
+                  "idCurso": 3
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Aluno criado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "nome": "Novo Aluno",
+                    "rg": "9876543",
+                    "cpf": "12312312312",
+                    "endereco": "Rua C, 789",
+                    "telefone": "987654321",
+                    "id_curso": 3
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/alunos/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do aluno",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza um aluno existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Nome do Aluno",
+                  "rg": "7654321",
+                  "cpf": "12345678900",
+                  "endereco": "Novo Endereço do Aluno",
+                  "telefone": "987654321",
+                  "idCurso": 2
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Aluno atualizado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Novo Nome do Aluno",
+                    "rg": "7654321",
+                    "cpf": "12345678900",
+                    "endereco": "Novo Endereço do Aluno",
+                    "telefone": "987654321",
+                    "id_curso": 2
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Aluno não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui um aluno",
+          "responses": {
+            "200": {
+              "description": "Aluno excluído com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Novo Nome do Aluno",
+                    "rg": "7654321",
+                    "cpf": "12345678900",
+                    "endereco": "Novo Endereço do Aluno",
+                    "telefone": "987654321",
+                    "id_curso": 2
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Aluno não encontrado"
+            }
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,149 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Aulas",
+      "description": "API para realizar operações CRUD em registros de aulas.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/aulas": {
+        "get": {
+          "summary": "Lista todas as aulas",
+          "responses": {
+            "200": {
+              "description": "Lista de aulas recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "data": "2023-11-12",
+                      "descricao": "Aula sobre...",
+                      "idprofessor": 1,
+                      "iddisciplina": 2
+                    },
+                    {
+                      "id": 2,
+                      "data": "2023-11-13",
+                      "descricao": "Aula sobre...",
+                      "idprofessor": 3,
+                      "iddisciplina": 4
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria uma nova aula",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": "2023-11-14",
+                  "descricao": "Nova aula sobre...",
+                  "idprofessor": 5,
+                  "iddisciplina": 6
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Aula criada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "data": "2023-11-14",
+                    "descricao": "Nova aula sobre...",
+                    "idprofessor": 5,
+                    "iddisciplina": 6
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/aulas/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID da aula",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza uma aula existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": "2023-11-15",
+                  "descricao": "Aula atualizada sobre...",
+                  "idprofessor": 7,
+                  "iddisciplina": 8
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Aula atualizada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "data": "2023-11-15",
+                    "descricao": "Aula atualizada sobre...",
+                    "idprofessor": 7,
+                    "iddisciplina": 8
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Aula não encontrada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui uma aula",
+          "responses": {
+            "200": {
+              "description": "Aula excluída com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "data": "2023-11-15",
+                    "descricao": "Aula atualizada sobre...",
+                    "idprofessor": 7,
+                    "iddisciplina": 8
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Aula não encontrada"
+            }
+          }
+        }
+      }
+    }
+  }
+  

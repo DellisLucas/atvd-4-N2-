@@ -1,0 +1,128 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Avaliações",
+      "description": "API para realizar operações CRUD em registros de avaliações.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/avaliacao": {
+        "get": {
+          "summary": "Lista todos os tipos de avaliação",
+          "responses": {
+            "200": {
+              "description": "Lista de tipos de avaliação recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "descricao": "Prova"
+                    },
+                    {
+                      "id": 2,
+                      "descricao": "Trabalho Prático"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo tipo de avaliação",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "descricao": "Apresentação Oral"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Tipo de avaliação criado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "descricao": "Apresentação Oral"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/avaliacao/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do tipo de avaliação",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza um tipo de avaliação existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "descricao": "Nova Descrição da Avaliação"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Tipo de avaliação atualizado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "descricao": "Nova Descrição da Avaliação"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Tipo de avaliação não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui um tipo de avaliação",
+          "responses": {
+            "200": {
+              "description": "Tipo de avaliação excluído com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "descricao": "Nova Descrição da Avaliação"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Tipo de avaliação não encontrado"
+            }
+          }
+        }
+      }
+    }
+  }
+  

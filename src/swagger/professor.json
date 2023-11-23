@@ -1,0 +1,142 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Professores",
+      "description": "API para realizar operações CRUD em registros de professores.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/professores": {
+        "get": {
+          "summary": "Lista todos os professores",
+          "responses": {
+            "200": {
+              "description": "Lista de professores recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "nome": "João Silva",
+                      "formacao": "Doutorado em Matemática",
+                      "idDisciplina": 3
+                    },
+                    {
+                      "id": 2,
+                      "nome": "Maria Oliveira",
+                      "formacao": "Mestrado em Física",
+                      "idDisciplina": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo professor",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Professor",
+                  "formacao": "Doutorado em Computação",
+                  "idDisciplina": 1
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Professor criado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "nome": "Novo Professor",
+                    "formacao": "Doutorado em Computação",
+                    "idDisciplina": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/professores/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do professor",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza um professor existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Nome do Professor",
+                  "formacao": "Mestrado em Informática",
+                  "idDisciplina": 2
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Professor atualizado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Novo Nome do Professor",
+                    "formacao": "Mestrado em Informática",
+                    "idDisciplina": 2
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Professor não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui um professor",
+          "responses": {
+            "200": {
+              "description": "Professor excluído com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Novo Nome do Professor",
+                    "formacao": "Mestrado em Informática",
+                    "idDisciplina": 2
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Professor não encontrado"
+            }
+          }
+        }
+      }
+    }
+  }
+  

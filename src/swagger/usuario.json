@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Usuários",
+      "description": "API para realizar operações CRUD em registros de usuários.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/usuarios": {
+        "get": {
+          "summary": "Lista todos os usuários",
+          "responses": {
+            "200": {
+              "description": "Lista de usuários recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "nome": "John Doe",
+                      "email": "john@example.com"
+                    },
+                    {
+                      "id": 2,
+                      "nome": "Jane Doe",
+                      "email": "jane@example.com"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo usuário",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Usuário",
+                  "email": "novo@example.com"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Usuário criado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "nome": "Novo Usuário",
+                    "email": "novo@example.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/usuario/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do usuário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza um usuário existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Nome do Usuário",
+                  "email": "novoemail@example.com"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Usuário atualizado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Novo Nome do Usuário",
+                    "email": "novoemail@example.com"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Usuário não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui um usuário",
+          "responses": {
+            "200": {
+              "description": "Usuário excluído com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Usuário não encontrado"
+            }
+          }
+        }
+      }
+    }
+  }
+  

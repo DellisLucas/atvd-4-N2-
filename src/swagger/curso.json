@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Cursos",
+      "description": "API para realizar operações CRUD em registros de cursos.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/curso": {
+        "get": {
+          "summary": "Lista todos os cursos",
+          "responses": {
+            "200": {
+              "description": "Lista de cursos recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "nome": "Ciência da Computação",
+                      "grade": "2023"
+                    },
+                    {
+                      "id": 2,
+                      "nome": "Engenharia Elétrica",
+                      "grade": "2022"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo curso",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Novo Curso",
+                  "grade": "2024"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Curso criado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "nome": "Novo Curso",
+                    "grade": "2024"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/curso/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do curso",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza um curso existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Curso Atualizado",
+                  "grade": "2025"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Curso atualizado com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Curso Atualizado",
+                    "grade": "2025"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Curso não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui um curso",
+          "responses": {
+            "200": {
+              "description": "Curso excluído com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Curso Atualizado",
+                    "grade": "2025"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Curso não encontrado"
+            }
+          }
+        }
+      }
+    }
+  }
+  

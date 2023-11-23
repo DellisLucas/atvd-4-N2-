@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Frequências",
+      "description": "API para realizar operações CRUD em registros de frequências.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/frequencia": {
+        "get": {
+          "summary": "Lista todas as frequências",
+          "responses": {
+            "200": {
+              "description": "Lista de frequências recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "idaula": 3,
+                      "idaluno": 1
+                    },
+                    {
+                      "id": 2,
+                      "idaula": 2,
+                      "idaluno": 4
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria uma nova frequência",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "idaula": 1,
+                  "idaluno": 5
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Frequência criada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "idaula": 1,
+                    "idaluno": 5
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/frequencia/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID da frequência",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza uma frequência existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "idaula": 2,
+                  "idaluno": 6
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Frequência atualizada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "idaula": 2,
+                    "idaluno": 6
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Frequência não encontrada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui uma frequência",
+          "responses": {
+            "200": {
+              "description": "Frequência excluída com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "idaula": 2,
+                    "idaluno": 6
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Frequência não encontrada"
+            }
+          }
+        }
+      }
+    }
+  }
+  

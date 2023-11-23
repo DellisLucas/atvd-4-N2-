@@ -1,0 +1,142 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gerenciamento de Disciplinas",
+      "description": "API para realizar operações CRUD em registros de disciplinas.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de Desenvolvimento"
+      }
+    ],
+    "paths": {
+      "/disciplinas": {
+        "get": {
+          "summary": "Lista todas as disciplinas",
+          "responses": {
+            "200": {
+              "description": "Lista de disciplinas recuperada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "nome": "Matemática",
+                      "idProfessor": 3,
+                      "idCurso": 2
+                    },
+                    {
+                      "id": 2,
+                      "nome": "História",
+                      "idProfessor": 1,
+                      "idCurso": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria uma nova disciplina",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Nova Disciplina",
+                  "idProfessor": 5,
+                  "idCurso": 3
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Disciplina criada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 3,
+                    "nome": "Nova Disciplina",
+                    "idProfessor": 5,
+                    "idCurso": 3
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/disciplinas/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID da disciplina",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "put": {
+          "summary": "Atualiza uma disciplina existente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "nome": "Disciplina Atualizada",
+                  "idProfessor": 7,
+                  "idCurso": 4
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Disciplina atualizada com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Disciplina Atualizada",
+                    "idProfessor": 7,
+                    "idCurso": 4
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Disciplina não encontrada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui uma disciplina",
+          "responses": {
+            "200": {
+              "description": "Disciplina excluída com sucesso",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 2,
+                    "nome": "Disciplina Atualizada",
+                    "idProfessor": 7,
+                    "idCurso": 4
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Disciplina não encontrada"
+            }
+          }
+        }
+      }
+    }
+  }
+  
